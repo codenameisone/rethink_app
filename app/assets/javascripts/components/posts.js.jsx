@@ -1,12 +1,13 @@
-var ShowPost = React.createClass({
+var Posts = React.createClass({
   getInitialState: function () {
-    return console.log(this);
+    console.log(this.props);
+    return this.props;
   },
 
   render: function () {
     return (
       <div className="comment-box">
-        <span> {name} </span>
+        <span> {this.posts} </span>
       </div>
     );
   }
