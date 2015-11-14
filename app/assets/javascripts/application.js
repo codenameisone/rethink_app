@@ -16,7 +16,9 @@
 //= require_tree .
 
 (function(){
-  var evtSource = new EventSource("/posts/2ehuBJK2Le6pOS");
+  var link = $('a').first().attr('href');
+
+  var evtSource = new EventSource(link);
 
   console.log(evtSource);
 
