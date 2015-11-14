@@ -30,4 +30,4 @@ $(function () {
     $l.parent().parent().find('td').eq(0).text( data.title );
     $l.parent().parent().find('td').eq(1).text( data.text );
   }
-})
+});
