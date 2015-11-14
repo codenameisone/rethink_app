@@ -81,7 +81,7 @@ NoBrainer.configure do |config|
   # Call NoBrainer.disconnect before a thread exits, otherwise you will have
   # a resource leak, and you will run out of connections.
   # Note that this is solution is temporary, until we get a connection pool.
-  # config.per_thread_connection = false
+  config.per_thread_connection = true
 
   # The machine id is used to generate primary keys. The default one is seeded
   # with the machine IP with Socket.gethostname.
