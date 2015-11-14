@@ -15,26 +15,21 @@
 //= require turbolinks
 //= require_tree .
 
-setTimeout(function (argument) {
-  (function(){
-    'use strict';
+$(function () {
+  'use strict';
 
-    var $link = $('a');
+  var $link = $('a').first();
+  var url = $link.attr('href');
 
-    for (var i = 0; i < $link.length; i++) {
-      (function($link){
-        var url = $link.attr('href');
-        console.log(url);
-        var evtSource = new EventSource(url);
-        
-        evtSource.onmessage = function(e) {
-          var data = JSON.parse(e.data);
-          var $l = $('[href="/posts/' + data.id + '"]');
+  console.log(url);
 
-          $l.parent().parent().find('td').eq(0).text( data.title );
-          $l.parent().parent().find('td').eq(1).text( data.text );
-        }
-      })($link.eq(i));
-    };
-  })();
-}, 0);
+  var evtSource = new EventSource(url);
+  
+  evtSource.onmessage = function(e) {
+    var data = JSON.parse(e.data);
+    var $l = $('[href="/posts/' + data.id + '"]');
+
+    $l.parent().parent().find('td').eq(0).text( data.title );
+    $l.parent().parent().find('td').eq(1).text( data.text );
+  }
+})
