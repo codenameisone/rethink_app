@@ -19,6 +19,4 @@
 npm-debug.log
 node_modules
 #config/database.yml
-public/
-public/coverage
 coverage

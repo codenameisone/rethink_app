@@ -1,3 +1,4 @@
+require 'json_sse'
 class PostsController < ApplicationController
   include ActionController::Live
 
