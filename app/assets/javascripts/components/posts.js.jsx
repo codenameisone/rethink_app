@@ -1,14 +1,22 @@
-var Posts = React.createClass({
+var ShowPost = React.createClass({
   getInitialState: function () {
-    console.log(this.props);
     return this.props;
   },
 
   render: function () {
+    var rows = [];
+    for(var prop in this.props) {
+      // если свойство унаследовано - continue
+      if (!this.props.hasOwnProperty(prop)) continue
+
+      rows.push(<tr>
+        <td>{this.props[prop].title}</td>
+        <td>{this.props[prop].text}</td>
+        <td>id: {this.props[prop].id}</td>
+      </tr>);
+    }
     return (
-      <div className="comment-box">
-        <span> {this.posts} </span>
-      </div>
+      <table className="table">{rows}</table>
     );
   }
 });
