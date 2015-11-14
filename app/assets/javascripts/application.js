@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+(function(){
+  var evtSource = new EventSource("/posts/2ehuBJK2Le6pOS");
+
+  console.log(evtSource);
+
+  evtSource.onmessage = function(e) {
+    var data = JSON.parse(e.data);
+    var $link = $('[href="/posts/' + data.id + '"]');
+
+    $link.parent().parent().find('td').eq(0).text( data.title );
+    $link.parent().parent().find('td').eq(1).text( data.text );
+  }
+})();
