@@ -18,12 +18,7 @@
 $(function () {
   'use strict';
 
-  var $link = $('a').first();
-  var url = $link.attr('href');
-
-  console.log(url);
-
-  var evtSource = new EventSource(url);
+  var evtSource = new EventSource('/posts');
   
   evtSource.onmessage = function(e) {
     var data = JSON.parse(e.data);
