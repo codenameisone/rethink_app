@@ -21,7 +21,7 @@ class PostsController < ApplicationController
         NoBrainer.disconnect rescue nil
       end
     else
-      @posts = Post.all
+      @presenter = Post.all
     end
   end
 
