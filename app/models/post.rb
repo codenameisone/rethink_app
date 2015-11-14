@@ -1,0 +1,7 @@
+class Post
+  include NoBrainer::Document
+  include NoBrainer::Document::Timestamps
+
+  field :title, type: String
+  field :text,  type: Text
+end
