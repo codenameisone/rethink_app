@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
     sse = JsonSSE.new(response.stream)
 
-    post = RethinkDB::RQL.new.table( Post.table_name ).get(Post.last.id)
+    post = RethinkDB::RQL.new.table( Post.table_name ).get(params[:id])
     post.changes.run(NoBrainer.connection.raw).each do |change|
       sse.write(change['new_val'])
     end
