@@ -7,8 +7,8 @@ class PostsController < ApplicationController
 
     sse = JsonSSE.new(response.stream)
 
-    post = RethinkDB::RQL.new.table( Post.table_name ).get(params[:id])
-    post.changes.run(NoBrainer.connection.raw).each do |change|
+    posts = Post.all
+    posts.changes.run(NoBrainer.connection.raw).each do |change|
       sse.write(change['new_val'])
     end
   rescue *client_disconnected
