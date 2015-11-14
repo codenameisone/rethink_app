@@ -16,7 +16,7 @@ var ShowPost = React.createClass({
       </tr>);
     }
     return (
-      <table className="table">{rows}</table>
+      <tbody>{rows}</tbody>
     );
   }
 });
