@@ -31,24 +31,23 @@ var ShowPost = React.createClass({
           rows: rows
         });
       };
-
-      var evtSource = new EventSource('/posts/stream');
-      evtSource.onmessage = function(e) {
-        var data = JSON.parse(e.data);
-        rows.push(<li key={i}>
-            <span>{data.title} </span>
-            <span>{data.text} </span>
-            <span>id: {data.id} </span>
-          </li>);
-
-        if (self.isMounted()) {
-          self.setState({
-            rows: rows
-          });
-        };
-      }
-
     });
+
+    window.evtSource = new EventSource('/posts/stream');
+    evtSource.onmessage = function(e) {
+      var data = JSON.parse(e.data);
+      rows.push(<li key={data.id}>
+          <span>{data.title} </span>
+          <span>{data.text} </span>
+          <span>id: {data.id} </span>
+        </li>);
+
+      if (self.isMounted()) {
+        self.setState({
+          rows: rows
+        });
+      };
+    }
   },
 
   render: function () {
