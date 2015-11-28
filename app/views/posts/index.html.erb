@@ -10,14 +10,14 @@
         <th>Id</th>
       </tr>
     </thead>
+  </table>
 
     <%= react_component('ShowPost',
                         @presenter.to_json,
+                        source: '/posts',
                         id: 'post',
-                        data: { reactive: posts_path })
+                        )
     %>
-
-  </table>
 </div>
 
 <br>

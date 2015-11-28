@@ -3,20 +3,41 @@ var ShowPost = React.createClass({
     return this.props;
   },
 
-  render: function () {
-    var rows = [];
-    for(var prop in this.props) {
-      // если свойство унаследовано - continue
-      if (!this.props.hasOwnProperty(prop)) continue
+  componentDidMount: function () {
+    var self = this;
+    $.ajax({
+      url: this.props.source,
+      dataType: 'json'
+    })
+    .done(function(result) {
+      if ( !result.posts && !result.posts.length ) {
+        return;
+      } 
+      var posts = result.posts;
 
-      rows.push(<tr>
-        <td>{this.props[prop].title}</td>
-        <td>{this.props[prop].text}</td>
-        <td>id: {this.props[prop].id}</td>
-      </tr>);
-    }
+      var rows = [];
+      for(var i = 0, length = posts.length; i < length; i++) {
+        // если свойство унаследовано - continue
+
+        rows.push(<li key={i}>
+          <span>{posts[i].title} </span>
+          <span>{posts[i].text} </span>
+          <span>id: {posts[i].id} </span>
+        </li>);
+      };
+
+      if (self.isMounted()) {
+        self.setState({
+          rows: rows
+        });
+      };
+    });
+  },
+
+  render: function () {
+    console.log(this.state);
     return (
-      <tbody>{rows}</tbody>
+      <ul>{this.state.rows}</ul>
     );
   }
 });
