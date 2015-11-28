@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :posts, only: [:index, :create, :destroy ] do
-    post :stream, on: :collection
+    get :stream, on: :collection
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
