@@ -13,11 +13,10 @@
 
     <%= react_component('ShowPost',
                         @presenter.to_json,
-                        prerender: true,
                         id: 'post',
                         data: { reactive: posts_path })
     %>
-    
+
   </table>
 </div>
 
