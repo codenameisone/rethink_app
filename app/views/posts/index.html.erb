@@ -1,16 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Posts</h1>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Text</th>
-        <th>Id</th>
-      </tr>
-    </thead>
-  </table>
+  <ul class="list">
+      <li>
+        <span>Title </span>
+        <span>Text </span>
+        <span>Id </span>
+      </li>
+  </ul>
 
     <%= react_component('ShowPost',
                         @presenter.to_json,
@@ -18,7 +15,6 @@
                         id: 'post',
                         )
     %>
-</div>
 
 <br>
 

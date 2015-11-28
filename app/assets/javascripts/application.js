@@ -17,17 +17,3 @@
 //= require react_ujs
 //= require components
 //= require_tree .
-
-// $(function () {
-//   'use strict';
-
-//   var evtSource = new EventSource('/posts');
-  
-//   evtSource.onmessage = function(e) {
-//     var data = JSON.parse(e.data);
-//     var $l = $('[href="/posts/' + data.id + '"]');
-
-//     $l.parent().parent().find('td').eq(0).text( data.title );
-//     $l.parent().parent().find('td').eq(1).text( data.text );
-//   }
-// });

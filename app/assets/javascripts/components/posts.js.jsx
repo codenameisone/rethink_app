@@ -5,17 +5,17 @@ var ShowPost = React.createClass({
 
   componentDidMount: function () {
     var self = this;
+    var rows = [];
     $.ajax({
       url: this.props.source,
       dataType: 'json'
     })
     .done(function(result) {
-      if ( !result.posts && !result.posts.length ) {
+      if ( !result.posts || !result.posts.length ) {
         return;
       } 
       var posts = result.posts;
 
-      var rows = [];
       for(var i = 0, length = posts.length; i < length; i++) {
         // если свойство унаследовано - continue
 
@@ -31,13 +31,30 @@ var ShowPost = React.createClass({
           rows: rows
         });
       };
+
+      var evtSource = new EventSource('/posts/stream');
+      evtSource.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        rows.push(<li key={i}>
+            <span>{data.title} </span>
+            <span>{data.text} </span>
+            <span>id: {data.id} </span>
+          </li>);
+
+        if (self.isMounted()) {
+          self.setState({
+            rows: rows
+          });
+        };
+      }
+
     });
   },
 
   render: function () {
     console.log(this.state);
     return (
-      <ul>{this.state.rows}</ul>
+      <ul id="postsList">{this.state.rows}</ul>
     );
   }
 });
