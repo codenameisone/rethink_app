@@ -1,3 +1,11 @@
+function setRows (ctx, rows) {
+  if (ctx.isMounted()) {
+    ctx.setState({
+      rows: rows
+    });
+  };
+}
+
 var ShowPost = React.createClass({
   getInitialState: function () {
     return this.props;
@@ -26,27 +34,20 @@ var ShowPost = React.createClass({
         </li>);
       };
 
-      if (self.isMounted()) {
-        self.setState({
-          rows: rows
-        });
-      };
+      setRows(self, rows);
     });
 
-    window.evtSource = new EventSource('/posts/stream');
+    var evtSource = new EventSource('/posts/stream');
     evtSource.onmessage = function(e) {
       var data = JSON.parse(e.data);
+
       rows.push(<li key={data.id}>
           <span>{data.title} </span>
           <span>{data.text} </span>
           <span>id: {data.id} </span>
         </li>);
 
-      if (self.isMounted()) {
-        self.setState({
-          rows: rows
-        });
-      };
+      setRows(self, rows);
     }
   },
 
