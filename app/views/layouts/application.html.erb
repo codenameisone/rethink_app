@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>RethinkApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <meta charset="utf-8">
+  <title>Reactive posts</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div class="container">
-    <%= yield %>
-  </div>
+<div class="ui top header text container">
+  <h1 class="ui dividing header">
+    Let's Rock! Reactive way.
+  </h1>
+</div>
+
+<div class="ui text container">
+  <%= yield %>
+</div>
 
 </body>
 </html>

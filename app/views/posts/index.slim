@@ -1,0 +1,16 @@
+.ui.padded.inverted.segment
+  = form_for Post.new, remote: true, html: {id: 'postSubmitForm',class: 'ui inverted form'} do |f|
+    .field
+      = f.label :title, 'Title'
+      = f.text_field :title, class: 'ui text'
+
+    .field
+      = f.label :text, 'Text'
+      = f.text_field :text, class: 'ui text'
+
+    .field
+      = f.submit 'Create', class: 'ui primary button'
+
+div
+  h2 Your recent posts listed below
+  = react_component('PostsList', url: posts_path(format: :sse))

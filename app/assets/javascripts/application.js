@@ -10,10 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require lodash
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require rx.all.js
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree .
+//= require aggregated_event_source
+//= require semantic-ui/transition
+//= require_self
+
